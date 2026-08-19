@@ -71,6 +71,28 @@ function pushIntensity(pushedAt: string, now: number): number {
 }
 
 /**
+ * GitHub happily reports a `homepage` long after the deployment behind it has
+ * gone. Probe each one so the section never renders a dead "live demo" link.
+ * Any failure — 404, timeout, DNS — simply drops the link.
+ */
+async function resolveHomepage(homepage: string | null): Promise<string | null> {
+  if (!homepage) return null;
+
+  try {
+    const response = await fetch(homepage, {
+      method: "HEAD",
+      redirect: "follow",
+      signal: AbortSignal.timeout(5000),
+      next: { revalidate: REVALIDATE_SECONDS },
+    });
+
+    return response.ok ? homepage : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Reads the real public profile. Returns `null` on any failure (rate limit,
  * offline build, renamed account) so the section can degrade to a static card
  * rather than showing invented numbers.
@@ -101,15 +123,17 @@ export async function getGitHubProfile(): Promise<GitHubProfile | null> {
       activity: sourceRepos.slice(0, 48).map((repo) => ({
         intensity: pushIntensity(repo.pushed_at, now),
       })),
-      repositories: sourceRepos.slice(0, 4).map((repo) => ({
-        name: repo.name,
-        url: repo.html_url,
-        description: repo.description,
-        language: repo.language,
-        homepage: repo.homepage,
-        updatedAt: repo.pushed_at,
-        updatedLabel: formatRelativeTime(repo.pushed_at, now),
-      })),
+      repositories: await Promise.all(
+        sourceRepos.slice(0, 4).map(async (repo) => ({
+          name: repo.name,
+          url: repo.html_url,
+          description: repo.description,
+          language: repo.language,
+          homepage: await resolveHomepage(repo.homepage),
+          updatedAt: repo.pushed_at,
+          updatedLabel: formatRelativeTime(repo.pushed_at, now),
+        })),
+      ),
     };
   } catch {
     // Intentionally quiet: the caller renders a fallback.

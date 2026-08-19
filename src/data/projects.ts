@@ -37,7 +37,7 @@ export const projects: Project[] = [
     stack: ["React.js", "TypeScript", "Node.js", "MongoDB"],
     preview: "dashboard",
     featured: false,
-    liveUrl: "https://agentyuga.com",
+    liveUrl: "https://internboys.online",
     sourceNote: "Company codebase — private",
   },
   {
