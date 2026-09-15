@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 
 const title = `${profile.name} | Frontend Developer`;
 const description =
-  "Frontend Developer specializing in React.js, Next.js, TypeScript and scalable web applications.";
+  "Avinash Shrivastav is a Frontend Developer in Noida, India, specializing in React.js, Next.js, TypeScript and fast, scalable web applications.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -60,11 +60,20 @@ export const metadata: Metadata = {
     title,
     description,
     locale: "en_IN",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: `${profile.name} - Frontend Developer portfolio`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: ["/opengraph-image"],
   },
   robots: {
     index: true,

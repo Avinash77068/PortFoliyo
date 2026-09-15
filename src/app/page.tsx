@@ -62,6 +62,16 @@ const structuredData = {
       inLanguage: "en",
       publisher: { "@id": `${siteUrl}/#person` },
     },
+    {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/#webpage`,
+      url: siteUrl,
+      name: `${profile.name} | Frontend Developer Portfolio`,
+      description: profile.summary,
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      about: { "@id": `${siteUrl}/#person` },
+      inLanguage: "en-IN",
+    },
   ],
 };
 

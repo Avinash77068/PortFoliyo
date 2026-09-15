@@ -22,11 +22,11 @@ export const profile = {
   },
 
   summary:
-    "Frontend Developer with 1.4+ years of experience building scalable, high-performance web applications using React.js, Next.js, TypeScript and modern JavaScript.",
+    "Frontend Developer in Noida, India with 1.4+ years of experience building fast, scalable and SEO-friendly web applications using React.js, Next.js, TypeScript and modern JavaScript.",
 
   about: [
-    "I am a Frontend Developer with 1.4+ years of experience building scalable, high-performance web applications. I specialize in React.js, Next.js, TypeScript and modern JavaScript.",
-    "I have experience building production-ready applications, complex admin dashboards, reusable UI systems, SEO-optimized websites and full-stack features.",
+    "I am Avinash Shrivastav, a Frontend Developer based in Noida, India. I build fast, accessible and scalable web applications with React.js, Next.js, TypeScript and modern JavaScript.",
+    "My work includes production-ready websites, complex admin dashboards, reusable UI systems, SEO-optimized experiences and full-stack features with Node.js, Express.js and MongoDB.",
   ],
 
   /** Short, factual answers to the questions a recruiter scans for. */

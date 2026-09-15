@@ -6,7 +6,7 @@
 export const GITHUB_USERNAME = "Avinash77068";
 
 export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://aviportfoliyo.netlify.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://avinashshrivastav.online"
 ).replace(/\/$/, "");
 
 export const links = {
